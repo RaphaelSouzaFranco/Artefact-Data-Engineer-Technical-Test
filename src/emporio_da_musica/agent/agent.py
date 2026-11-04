@@ -9,11 +9,12 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 from emporio_da_musica import config
 from emporio_da_musica.agent.prompts import SYSTEM_PROMPT
+from emporio_da_musica.memory import SQLiteConversationMemory
 from emporio_da_musica.tools import ALL_TOOLS
 
 
 class EmporioAgent:
-    """Agente de atendimento conversacional com ReAct / Function Calling nativo."""
+    """Agente de atendimento conversacional com ReAct / Function Calling nativo e memória persistente."""
 
     def __init__(
         self,
@@ -21,9 +22,11 @@ class EmporioAgent:
         temperature: float = 0.2,
         llm: Optional[Any] = None,
         tools: Optional[List[Any]] = None,
+        memory: Optional[SQLiteConversationMemory] = None,
     ):
         self.tools = tools or ALL_TOOLS
         self.tools_by_name = {t.name: t for t in self.tools}
+        self.memory = memory or SQLiteConversationMemory()
 
         if llm is not None:
             self.llm = llm
@@ -37,15 +40,32 @@ class EmporioAgent:
         # Vincular ferramentas com function calling nativo do Gemini
         self.llm_with_tools = self.llm.bind_tools(self.tools)
 
-    def invoke(self, messages: List[BaseMessage]) -> AIMessage:
-        """Executa um ciclo completo de raciocínio e function calling até resposta final."""
-        # Garantir system prompt inicial
+    def invoke(
+        self,
+        messages: List[BaseMessage],
+        thread_id: Optional[str] = None,
+    ) -> AIMessage:
+        """Executa um ciclo completo de raciocínio e function calling até resposta final.
+        
+        Se thread_id for fornecido, recupera o histórico persistido antes de rodar
+        e salva as novas mensagens ao final.
+        """
         full_history: List[BaseMessage] = []
-        if not messages or not isinstance(messages[0], SystemMessage):
-            full_history.append(SystemMessage(content=SYSTEM_PROMPT))
-        full_history.extend(messages)
 
-        # Loop de Function Calling (máximo de 5 passos para evitar loops infinitos)
+        # 1. Recuperar histórico prévio se houver thread_id
+        if thread_id:
+            prior_messages = self.memory.get_messages(thread_id)
+            full_history.extend(prior_messages)
+
+        # 2. Garantir system prompt inicial
+        if not full_history or not isinstance(full_history[0], SystemMessage):
+            full_history.insert(0, SystemMessage(content=SYSTEM_PROMPT))
+
+        # 3. Adicionar as novas mensagens de entrada
+        full_history.extend(messages)
+        start_idx_new_messages = len(full_history) - len(messages)
+
+        # Loop de Function Calling (máximo de 5 passos)
         for _ in range(5):
             ai_msg = self.llm_with_tools.invoke(full_history)
             full_history.append(ai_msg)
@@ -60,6 +80,13 @@ class EmporioAgent:
                         if isinstance(item, dict) and item.get("type") == "text"
                     ]
                     ai_msg.content = "".join(texts)
+
+                # 4. Salvar histórico da sessão se thread_id foi fornecido
+                if thread_id:
+                    # Salva as novas mensagens geradas neste turno
+                    novas_para_salvar = full_history[start_idx_new_messages:]
+                    self.memory.append_messages(thread_id, novas_para_salvar)
+
                 return ai_msg
 
             # Executar as ferramentas chamadas pelo modelo
