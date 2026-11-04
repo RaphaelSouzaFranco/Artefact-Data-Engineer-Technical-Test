@@ -1,4 +1,4 @@
-# 🎸 Empório da Música — Intelligent Customer Support Agent
+#  Empório da Música — Intelligent Customer Support Agent
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![LangChain](https://img.shields.io/badge/Framework-LangChain-green.svg)](https://www.langchain.com/)
@@ -11,12 +11,12 @@
 
 ## 🇺🇸 English
 
-### 📖 About the Project
+### About the Project
 Autonomous customer support agent designed for **Empório da Música**, a traditional musical instrument store located in Campo Grande, MS, Brazil.
 
 Built with Google Gemini (`gemini-3.5-flash-lite`), LangChain, and a lightweight local vector search engine (RAG), the agent provides accurate, polite, and grounded customer service using a warm regional tone of voice.
 
-### ✨ Key Capabilities
+###  Key Capabilities
 - **Real-Time Catalog Inquiries (Decision A):** Queries product inventory, specifications, and active promotions using strict structured function calling with pandas.
 - **Semantic Policy RAG (Decision B):** Extracts and searches the official store policies manual (`políticas_da_loja.pdf`) using `gemini-embedding-001` and cosine similarity in numpy.
 - **Secure Order Status Lookup:** Strict identity validation requiring order number, email, and phone number of the cardholder before displaying sensitive shipment data.
@@ -25,7 +25,7 @@ Built with Google Gemini (`gemini-3.5-flash-lite`), LangChain, and a lightweight
 
 ---
 
-### 🏛️ Architecture Overview
+###  Architecture Overview
 
 ```
 [ User (CLI / Gradio Web) ]
@@ -51,7 +51,7 @@ Tools CSV   PolicyRetriever         Polite Refusal
 
 ---
 
-### 📁 Repository Structure
+###  Repository Structure
 
 ```
 Artefact-Data-Engineer-Technical-Test/
@@ -74,7 +74,7 @@ Artefact-Data-Engineer-Technical-Test/
 
 ---
 
-### 🚀 Getting Started
+###  Getting Started
 
 #### 1. Setup Virtual Environment
 ```powershell
@@ -115,12 +115,12 @@ pytest -v
 
 ## 🇧🇷 Português
 
-### 📖 Sobre o Projeto
+###  Sobre o Projeto
 Agente de atendimento conversacional autônomo desenvolvido para a **Empório da Música**, loja especializada em instrumentos musicais situada em Campo Grande/MS.
 
 Construído utilizando o ecossistema Google Gemini (`gemini-3.5-flash-lite`), LangChain e um motor de busca semântica vetorial local (RAG), o agente fornece respostas precisas, cordiais e fundamentadas com leve sotaque regional sul-mato-grossense.
 
-### ✨ Funcionalidades Principais
+###  Funcionalidades Principais
 - **Consulta de Catálogo em Tempo Real (Decisão A):** Consulta produtos, preços, especificações técnicas e promoções ativas via Function Calling estruturado com pandas.
 - **RAG de Políticas da Loja (Decisão B):** Segmenta e recupera regras do manual oficial em PDF (`políticas_da_loja.pdf`) via `gemini-embedding-001` e similaridade de cosseno em numpy.
 - **Consulta Segura de Pedidos:** Validação estrita de identidade exigindo número do pedido, e-mail e telefone do titular antes de exibir dados sensíveis ou rastreio.
@@ -129,7 +129,7 @@ Construído utilizando o ecossistema Google Gemini (`gemini-3.5-flash-lite`), La
 
 ---
 
-### 🏛️ Arquitetura do Sistema
+###  Arquitetura do Sistema
 
 ```
 [ Usuário (CLI / Gradio Web) ]
@@ -155,7 +155,7 @@ Tools CSV   PolicyRetriever         Recusa educada
 
 ---
 
-### 📁 Estrutura do Repositório
+###  Estrutura do Repositório
 
 ```
 Artefact-Data-Engineer-Technical-Test/
@@ -178,7 +178,7 @@ Artefact-Data-Engineer-Technical-Test/
 
 ---
 
-### 🚀 Como Executar
+###  Como Executar
 
 #### 1. Configurar Ambiente Virtual
 ```powershell
