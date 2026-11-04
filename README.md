@@ -25,6 +25,14 @@ Built with Google Gemini (`gemini-3.5-flash-lite`), LangChain, and a lightweight
 
 ---
 
+### Interface Demonstration & Video
+
+| Web Chat Interface Preview | Video Demonstration |
+| :---: | :---: |
+| ![Web Interface Preview](assets/imgs/web_interface_preview.png) | [Watch Demonstration Video (MP4)](assets/imgs/demo_recording.mp4) |
+
+---
+
 ### Architecture & Technical Decisions (Rationale)
 
 ```
@@ -186,6 +194,14 @@ Construído utilizando o ecossistema Google Gemini (`gemini-3.5-flash-lite`), La
 - **Consulta Segura de Pedidos:** Validação estrita de identidade exigindo número do pedido, e-mail e telefone do titular antes de exibir dados sensíveis ou rastreio.
 - **Memória Persistente por Sessão:** Histórico de conversação preservado em SQLite (`storage/memory.sqlite3`) indexado por `thread_id`.
 - **Guardrails Rígidos (Decisão C):** Recusa educadamente perguntas fora de contexto e orienta que a loja não comercializa acessórios avulsos (cabos, palhetas, encordoamentos).
+
+---
+
+### Demonstração da Interface & Vídeo
+
+| Prévia da Interface Web | Demonstração em Vídeo |
+| :---: | :---: |
+| ![Prévia da Interface Web](assets/imgs/web_interface_preview.png) | [Assistir Vídeo de Demonstração (MP4)](assets/imgs/demo_recording.mp4) |
 
 ---
 
