@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empório da Música — Atendimento Virtual</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <div class="brand-icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Empório da Música</h1>
+          <p class="brand-subtitle">
+            <span class="status-indicator"></span>
+            Assistente Virtual &bull; Campo Grande, MS
+          </p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <span class="thread-badge" id="threadDisplay">Sessão: carregando...</span>
+        <button class="btn-secondary" id="btnReset" title="Iniciar uma nova conversa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          Nova Conversa
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Messages Window -->
+    <main class="chat-window" id="chatWindow">
+      <div class="welcome-banner">
+        <h2 class="welcome-title">Atendimento ao Cliente</h2>
+        <p class="welcome-text">
+          Bem-vindo ao canal digital da Empório da Música. Consulte nosso catálogo de instrumentos, tire dúvidas sobre políticas de frete, trocas e garantias, ou consulte o andamento de seus pedidos.
+        </p>
+      </div>
+    </main>
+
+    <!-- Typing Indicator -->
+    <div class="typing-indicator" id="typingIndicator">
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+    </div>
+
+    <!-- Quick Suggestions -->
+    <nav class="suggestions-panel" aria-label="Sugestões de perguntas">
+      <button class="suggestion-pill" data-text="Vocês têm violão da Takamine em estoque?">Violões Takamine em estoque</button>
+      <button class="suggestion-pill" data-text="Como funciona a política de devolução por arrependimento?">Prazo e regras de devolução</button>
+      <button class="suggestion-pill" data-text="Qual o horário de funcionamento e endereço da loja?">Horário e endereço</button>
+      <button class="suggestion-pill" data-text="Como funciona o frete para a cidade de Campo Grande?">Frete em Campo Grande</button>
+      <button class="suggestion-pill" data-text="Gostaria de verificar o status do meu pedido 8">Consultar pedido #8</button>
+    </nav>
+
+    <!-- Input Panel -->
+    <footer class="input-panel">
+      <div class="input-wrapper">
+        <textarea
+          id="messageInput"
+          class="chat-input"
+          placeholder="Digite sua dúvida sobre instrumentos ou pedidos..."
+          rows="1"
+        ></textarea>
+        <button class="btn-send" id="btnSend">
+          <span>Enviar</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,22 +1,22 @@
-# 🎸 Empório da Música — Intelligent Customer Support Agent
+# Empório da Música — Intelligent Customer Support Agent
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![LangChain](https://img.shields.io/badge/Framework-LangChain-green.svg)](https://www.langchain.com/)
 [![Google Gemini](https://img.shields.io/badge/LLM-Google%20Gemini-orange.svg)](https://ai.google.dev/)
-[![Tests](https://img.shields.io/badge/Tests-75%20Passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-78%20Passed-brightgreen.svg)](tests/)
 
-> **Language / Idioma:** [English](#-english) | [Português](#-português)
+> **Language / Idioma:** [English](#english) | [Português](#português)
 
 ---
 
-## 🇺🇸 English
+## English
 
-### 📖 About the Project
+### About the Project
 Autonomous customer support agent designed for **Empório da Música**, a traditional musical instrument store located in Campo Grande, MS, Brazil.
 
 Built with Google Gemini (`gemini-3.5-flash-lite`), LangChain, and a lightweight local vector search engine (RAG), the agent provides accurate, polite, and grounded customer service using a warm regional tone of voice.
 
-### ✨ Key Capabilities
+### Key Capabilities
 - **Real-Time Catalog Inquiries (Decision A):** Queries product inventory, specifications, and active promotions using strict structured function calling with pandas.
 - **Semantic Policy RAG (Decision B):** Extracts and searches the official store policies manual (`políticas_da_loja.pdf`) using `gemini-embedding-001` and cosine similarity in numpy.
 - **Secure Order Status Lookup:** Strict identity validation requiring order number, email, and phone number of the cardholder before displaying sensitive shipment data.
@@ -25,10 +25,10 @@ Built with Google Gemini (`gemini-3.5-flash-lite`), LangChain, and a lightweight
 
 ---
 
-### 🏛️ Architecture & Technical Decisions (Rationale)
+### Architecture & Technical Decisions (Rationale)
 
 ```
-[ User (CLI / Gradio Web) ]
+[ User (CLI / Web HTML5/CSS3) ]
              │
              ▼
    [ EmporioAgent (Gemini 3.5 Flash Lite) ]
@@ -80,7 +80,7 @@ Tools CSV   PolicyRetriever         Polite Refusal
 
 ---
 
-### 📁 Repository Structure
+### Repository Structure
 
 ```
 Artefact-Data-Engineer-Technical-Test/
@@ -89,21 +89,27 @@ Artefact-Data-Engineer-Technical-Test/
 │   └── csv/                                  # Customers, products, orders, categories, promotions
 ├── src/emporio_da_musica/
 │   ├── agent/             # Persona, system prompt, ReAct agent loop
-│   ├── app/               # CLI and Gradio Web interfaces
+│   ├── app/
+│   │   ├── server.py      # FastAPI REST server & static file host
+│   │   ├── cli.py         # Terminal CLI chat interface
+│   │   └── static/        # Modern HTML5/CSS3/JS Web App (Uber/Base Web inspired)
+│   │       ├── index.html
+│   │       ├── styles.css
+│   │       └── app.js
 │   ├── data/              # CSV loaders, normalization utils, type schemas
 │   ├── memory/            # SQLite multi-turn persistence
 │   ├── rag/               # PDF parser, semantic chunking, numpy vector store
 │   ├── tools/             # Function calling tool registry
 │   └── config.py          # Unified path and model settings
 ├── storage/               # Runtime artifacts (vector index and SQLite database)
-├── tests/                 # 75 unit and integration tests (100% offline & mock-tested)
+├── tests/                 # 78 unit and integration tests (100% offline & mock-tested)
 ├── pyproject.toml
 └── requirements.txt
 ```
 
 ---
 
-### 🚀 Getting Started
+### Getting Started
 
 #### 1. Setup Virtual Environment
 ```powershell
@@ -123,11 +129,11 @@ EMPORIO_EMBEDDING_MODEL=gemini-embedding-001
 
 #### 3. Running the Interfaces
 
-- **Web Interface (Gradio):**
+- **Web Application (FastAPI + HTML5/CSS3 UI):**
   ```powershell
-  python -m emporio_da_musica.app.web
+  python -m uvicorn emporio_da_musica.app.server:app --reload --port 8000
   ```
-  Open `http://127.0.0.1:7860` in your web browser.
+  Open `http://localhost:8000` in your web browser.
 
 - **Terminal Interface (CLI):**
   ```powershell
@@ -141,7 +147,7 @@ pytest -v
 
 ---
 
-### 🗺️ Future Roadmap & Engineering Enhancements
+### Future Roadmap & Engineering Enhancements
 
 The current architecture provides a robust, decoupled foundation. Key technical enhancements identified for production scaling include:
 
@@ -155,21 +161,21 @@ The current architecture provides a robust, decoupled foundation. Key technical 
 4. **Hybrid Search (BM25 + Dense Vectors):**
    - Combine dense vector retrieval (`gemini-embedding-001`) with sparse keyword matching (BM25 / Reciprocal Rank Fusion) for exact SKU, serial number, and policy section lookups.
 5. **Streaming Response Support:**
-   - Implement token streaming in `agent.py` and connect it with `gr.Chatbot(streaming=True)` to lower perceived latency on longer multi-turn answers.
+   - Implement token streaming in `agent.py` and connect it with WebSockets/Server-Sent Events (SSE) in FastAPI to lower perceived latency on longer multi-turn answers.
 6. **Containerization & Deployment:**
    - Provide a production-ready multi-stage `Dockerfile` and `docker-compose.yml` including health checks and non-root execution profiles.
 
 ---
 ---
 
-## 🇧🇷 Português
+## Português
 
-### 📖 Sobre o Projeto
+### Sobre o Projeto
 Agente de atendimento conversacional autônomo desenvolvido para a **Empório da Música**, loja especializada em instrumentos musicais situada em Campo Grande/MS.
 
 Construído utilizando o ecossistema Google Gemini (`gemini-3.5-flash-lite`), LangChain e um motor de busca semântica vetorial local (RAG), o agente fornece respostas precisas, cordiais e fundamentadas com leve sotaque regional sul-mato-grossense.
 
-### ✨ Funcionalidades Principais
+### Funcionalidades Principais
 - **Consulta de Catálogo em Tempo Real (Decisão A):** Consulta produtos, preços, especificações técnicas e promoções ativas via Function Calling estruturado com pandas.
 - **RAG de Políticas da Loja (Decisão B):** Segmenta e recupera regras do manual oficial em PDF (`políticas_da_loja.pdf`) via `gemini-embedding-001` e similaridade de cosseno em numpy.
 - **Consulta Segura de Pedidos:** Validação estrita de identidade exigindo número do pedido, e-mail e telefone do titular antes de exibir dados sensíveis ou rastreio.
@@ -178,10 +184,10 @@ Construído utilizando o ecossistema Google Gemini (`gemini-3.5-flash-lite`), La
 
 ---
 
-### 🏛️ Arquitetura e Decisões Técnicas (Justificativas)
+### Arquitetura e Decisões Técnicas (Justificativas)
 
 ```
-[ Usuário (CLI / Gradio Web) ]
+[ Usuário (CLI / Web HTML5/CSS3) ]
              │
              ▼
    [ EmporioAgent (Gemini 3.5 Flash Lite) ]
@@ -233,7 +239,7 @@ Tools CSV   PolicyRetriever         Recusa educada
 
 ---
 
-### 📁 Estrutura do Repositório
+### Estrutura do Repositório
 
 ```
 Artefact-Data-Engineer-Technical-Test/
@@ -242,21 +248,27 @@ Artefact-Data-Engineer-Technical-Test/
 │   └── csv/                                  # Clientes, produtos, pedidos, categorias, promoções
 ├── src/emporio_da_musica/
 │   ├── agent/             # Persona, system prompt, loop do agente ReAct
-│   ├── app/               # Interfaces de usuário (CLI e Gradio Web)
+│   ├── app/
+│   │   ├── server.py      # Servidor FastAPI REST e entrega de arquivos estáticos
+│   │   ├── cli.py         # Interface de linha de comando no terminal
+│   │   └── static/        # Aplicação Web HTML5/CSS3/JS (design clean estilo Uber/Base Web)
+│   │       ├── index.html
+│   │       ├── styles.css
+│   │       └── app.js
 │   ├── data/              # Carga dos CSVs, utilitários de texto, schemas
 │   ├── memory/            # Persistência multi-sessão em SQLite
 │   ├── rag/               # Extrator de PDF, segmentação, índice vetorial numpy
 │   ├── tools/             # Registro de ferramentas (Function Calling)
 │   └── config.py          # Centralização de caminhos e modelos
 ├── storage/               # Artefatos gerados em runtime (vetores e SQLite)
-├── tests/                 # 75 testes unitários e de integração (100% offline & mockados)
+├── tests/                 # 78 testes unitários e de integração (100% offline & mockados)
 ├── pyproject.toml
 └── requirements.txt
 ```
 
 ---
 
-### 🚀 Como Executar
+### Como Executar
 
 #### 1. Configurar Ambiente Virtual
 ```powershell
@@ -276,11 +288,11 @@ EMPORIO_EMBEDDING_MODEL=gemini-embedding-001
 
 #### 3. Iniciando as Interfaces
 
-- **Interface Web (Gradio):**
+- **Aplicação Web (Servidor FastAPI + UI HTML5/CSS3):**
   ```powershell
-  python -m emporio_da_musica.app.web
+  python -m uvicorn emporio_da_musica.app.server:app --reload --port 8000
   ```
-  Acesse `http://127.0.0.1:7860` no seu navegador.
+  Acesse `http://localhost:8000` no seu navegador.
 
 - **Interface de Terminal (CLI):**
   ```powershell
@@ -294,7 +306,7 @@ pytest -v
 
 ---
 
-### 🗺️ Roadmap de Evolução Técnica
+### Roadmap de Evolução Técnica
 
 Com a arquitetura modular e desacoplada já estabelecida, os seguintes aprimoramentos técnicos são os próximos passos recomendados para um ambiente produtivo em larga escala:
 
@@ -308,6 +320,6 @@ Com a arquitetura modular e desacoplada já estabelecida, os seguintes aprimoram
 4. **Busca Híbrida (Dense + Sparse/BM25):**
    - Combinação de embeddings densos com busca por palavras-chave exatas (BM25 com RRF - *Reciprocal Rank Fusion*) para localização infalível de códigos de rastreio, modelos alfanuméricos específicos e artigos exatos do manual.
 5. **Streaming de Resposta:**
-   - Habilitação de geração progressiva de tokens (*streaming*) no método `invoke` do agente e integração com `gr.Chatbot(streaming=True)`, reduzindo a percepção de espera do usuário.
+   - Habilitação de geração progressiva de tokens (*streaming*) no método `invoke` do agente e integração com WebSockets ou Server-Sent Events (SSE) no FastAPI, reduzindo a percepção de espera do usuário.
 6. **Conteinerização:**
    - Disponibilização de `Dockerfile` multi-stage e `docker-compose.yml` com políticas de execução não-root e rotinas de healthcheck para orquestração em Kubernetes/Cloud Run.
