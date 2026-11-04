@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from emporio.data import loader
+from emporio_da_musica.data import loader
 
 
 # --------------------------------------------------------------------------- #

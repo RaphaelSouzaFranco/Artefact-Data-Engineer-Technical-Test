@@ -1,12 +1,12 @@
 """Fase 0 — Gate de setup: pacote importável e fontes de dados localizáveis."""
 
-from emporio import config
+from emporio_da_musica import config
 
 
 def test_pacote_importavel():
-    import emporio
+    import emporio_da_musica
 
-    assert emporio.__version__
+    assert emporio_da_musica.__version__
 
 
 def test_todos_os_csvs_existem():

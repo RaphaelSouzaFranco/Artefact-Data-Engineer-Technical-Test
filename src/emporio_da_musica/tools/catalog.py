@@ -11,8 +11,8 @@ from typing import Any, Optional
 
 from langchain_core.tools import tool
 
-from emporio.data import loader
-from emporio.data.text import normalize_email, normalize_phone, normalize_text
+from emporio_da_musica.data import loader
+from emporio_da_musica.data.text import normalize_email, normalize_phone, normalize_text
 
 
 @tool

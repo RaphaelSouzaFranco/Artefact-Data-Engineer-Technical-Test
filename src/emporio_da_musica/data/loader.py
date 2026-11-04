@@ -16,8 +16,8 @@ from typing import Any
 
 import pandas as pd
 
-from emporio import config
-from emporio.data.text import normalize_email, normalize_phone, normalize_text
+from emporio_da_musica import config
+from emporio_da_musica.data.text import normalize_email, normalize_phone, normalize_text
 
 # Status válidos de produto e pedido, conforme os dados de origem.
 PRODUCT_STATUSES = ("active", "discontinued", "coming_soon")

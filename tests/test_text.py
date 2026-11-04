@@ -2,7 +2,7 @@
 
 import pytest
 
-from emporio.data.text import normalize_email, normalize_phone, normalize_text
+from emporio_da_musica.data.text import normalize_email, normalize_phone, normalize_text
 
 
 @pytest.mark.parametrize(

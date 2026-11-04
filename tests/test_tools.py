@@ -1,7 +1,7 @@
 """Fase 2 — Testes unitários das Tools do agente."""
 
 import pytest
-from emporio.tools.catalog import (
+from emporio_da_musica.tools.catalog import (
     buscar_produto,
     consultar_cliente,
     verificar_status_pedido,

@@ -47,5 +47,5 @@ MEMORY_DB_PATH: Path = STORAGE_DIR / "memory.sqlite3"
 # --------------------------------------------------------------------------- #
 GOOGLE_API_KEY: str | None = os.getenv("GOOGLE_API_KEY") or None
 CHAT_MODEL: str = os.getenv("EMPORIO_CHAT_MODEL", "gemini-2.5-flash")
-EMBEDDING_MODEL: str = os.getenv("EMPORIO_EMBEDDING_MODEL", "models/gemini-embedding-001")
+EMBEDDING_MODEL: str = os.getenv("EMPORIO_EMBEDDING_MODEL", "models/text-embedding-004")
 

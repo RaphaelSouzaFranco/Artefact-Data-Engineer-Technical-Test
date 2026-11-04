@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "emporio"
+name = "emporio_da_musica"
 version = "0.1.0"
 description = "Agente de atendimento da Empório da Música (Gemini + LangChain + RAG)"
 requires-python = ">=3.10"
