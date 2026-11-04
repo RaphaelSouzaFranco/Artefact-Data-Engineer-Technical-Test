@@ -131,13 +131,18 @@ EMPORIO_EMBEDDING_MODEL=gemini-embedding-001
 
 - **Web Application (FastAPI + HTML5/CSS3 UI):**
   ```powershell
+  # If virtual environment is activated:
   python -m uvicorn emporio_da_musica.app.server:app --reload --port 8000
+
+  # Or directly using the virtual environment path:
+  .\.venv\Scripts\python.exe -m uvicorn emporio_da_musica.app.server:app --reload --port 8000
   ```
   Open `http://localhost:8000` in your web browser.
 
 - **Terminal Interface (CLI):**
   ```powershell
   python -m emporio_da_musica.app.cli
+  # or: .\.venv\Scripts\python.exe -m emporio_da_musica.app.cli
   ```
 
 #### 4. Running the Test Suite
@@ -290,13 +295,18 @@ EMPORIO_EMBEDDING_MODEL=gemini-embedding-001
 
 - **Aplicação Web (Servidor FastAPI + UI HTML5/CSS3):**
   ```powershell
+  # Com o ambiente virtual ativado:
   python -m uvicorn emporio_da_musica.app.server:app --reload --port 8000
+
+  # Ou diretamente pelo caminho do ambiente virtual:
+  .\.venv\Scripts\python.exe -m uvicorn emporio_da_musica.app.server:app --reload --port 8000
   ```
   Acesse `http://localhost:8000` no seu navegador.
 
 - **Interface de Terminal (CLI):**
   ```powershell
   python -m emporio_da_musica.app.cli
+  # ou: .\.venv\Scripts\python.exe -m emporio_da_musica.app.cli
   ```
 
 #### 4. Executando a Suíte de Testes
