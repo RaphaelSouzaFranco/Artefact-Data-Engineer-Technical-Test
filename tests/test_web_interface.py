@@ -32,3 +32,4 @@ def test_serve_static_assets(client):
     js_res = client.get("/static/app.js")
     assert js_res.status_code == 200
     assert "emporio_thread_id" in js_res.text
+
