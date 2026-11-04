@@ -92,7 +92,7 @@ Artefact-Data-Engineer-Technical-Test/
 │   ├── app/
 │   │   ├── server.py      # FastAPI REST server & static file host
 │   │   ├── cli.py         # Terminal CLI chat interface
-│   │   └── static/        # Modern HTML5/CSS3/JS Web App (Uber/Base Web inspired)
+│   │   └── static/        # Modern HTML5/CSS3/JS Web App (clean minimalist design)
 │   │       ├── index.html
 │   │       ├── styles.css
 │   │       └── app.js
@@ -256,7 +256,7 @@ Artefact-Data-Engineer-Technical-Test/
 │   ├── app/
 │   │   ├── server.py      # Servidor FastAPI REST e entrega de arquivos estáticos
 │   │   ├── cli.py         # Interface de linha de comando no terminal
-│   │   └── static/        # Aplicação Web HTML5/CSS3/JS (design clean estilo Uber/Base Web)
+│   │   └── static/        # Aplicação Web HTML5/CSS3/JS (design clean e minimalista)
 │   │       ├── index.html
 │   │       ├── styles.css
 │   │       └── app.js
