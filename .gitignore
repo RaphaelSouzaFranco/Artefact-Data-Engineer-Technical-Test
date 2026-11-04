@@ -1,0 +1,19 @@
+# Ambiente
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Segredos
+.env
+
+# Artefatos gerados em runtime (índice vetorial, memória SQLite)
+storage/
+
+# IDE / SO
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+

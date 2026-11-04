@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emporio"
+version = "0.1.0"
+description = "Agente de atendimento da Empório da Música (Gemini + LangChain + RAG)"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+filterwarnings = [
+    # Aviso interno do langsmith (dependência do LangChain) no Python 3.14; não é do nosso código.
+    "ignore:'asyncio.iscoroutinefunction' is deprecated:DeprecationWarning:langsmith.*",
+]
+markers = [
+    "integration: testes que chamam a API real do Gemini (exigem GOOGLE_API_KEY)",
+]
+

@@ -1,0 +1,21 @@
+# Núcleo de dados
+pandas>=2.2
+numpy>=1.26
+
+# LLM / Agente (Gemini via LangChain)
+langchain>=1.0
+langchain-core>=1.0
+langchain-google-genai>=3.0
+
+# RAG
+pypdf>=5.0
+
+# Interface
+gradio>=5.0
+
+# Configuração
+python-dotenv>=1.0
+
+# Testes
+pytest>=8.0
+
